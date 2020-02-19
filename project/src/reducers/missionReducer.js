@@ -1,9 +1,11 @@
-import GET_DATA from "../actions";
+import {GET_DATA, UPDATE_MISSIONS, SET_ERROR} from "../actions";
+
 
 
 const initialState = {
     missions: [],
-    isFetchingData: false
+    isFetchingData: false,
+    error: ''
 }
 
 // export const getData = () => {
@@ -17,7 +19,20 @@ export const missionReducer = (state = initialState, action) => {
         case GET_DATA:
             return {
                 ...state,
-                isfetchingData: true
+                isFetchingData: true,
+                missions: []
+            };
+        case UPDATE_MISSIONS:
+            return {
+                ...state,
+                missions: action.payload,
+                isFetchingData: false
+            };
+        case SET_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                isFetchingData: false
             };
         default: return state;
 
