@@ -1,13 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { missionReducer as reducer } from "./reducers/missionReducer.js";
+
+import MissionForm from "./components/MissionForm.js";
+
+const store = createStore(reducer);
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello world!</h1>
-      <h2>Start here...</h2>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <h1>Space Missions</h1>
+        <MissionForm />
+      </div>
+    </Provider>
   );
 }
 
